@@ -44,6 +44,51 @@ shellex("echo hello, world").stdout # => "hello, world\n"
 shellex("echo error here 1>&2").stderr # => "error here\n"
 ```
 
+Providing STDIN input:
+
+```ruby
+shellex("cat -", :input => "hello").stdout # => "hello"
+```
+
+By default if you don't provide input we close the STDIN stream, but if you want you can leave it open:
+
+```ruby
+shellex("cat /dev/stdin", :close_stdin => false)
+```
+
+Timeouts (default timeout is set to 5 minutes):
+
+```ruby
+shellex("sleep 10", :timeout => 1) # raises ShellExecutionTimeout exception
+```
+
+Interpolation of arguments:
+
+```ruby
+shellex("echo ? ? ?", 1, "blah", [1,2,3])
+# executes: echo '1' 'blah' '123'
+
+# ?& interpolates each array element separately
+shellex("? ?& ?", "echo", [1,2,3,4], "abc")
+# executes: 'echo' '1' '2' '3' '4' 'abc'
+
+# ?& requires array to be present in the respective position
+shellex("? ?& ?", "echo", 1)
+# raises ShellArgumentMissing as it's missing the array for ?&
+
+# ?~ escapes question mark
+shellex("? ?~", "echo", "ello")
+# executes: 'echo' ?
+
+# ? by default will turn nil into empty string
+shellex("echo ?", nil)
+# executes: echo ''
+
+# ?? will skip the argument if it's nil
+shellex("echo ??", nil)
+# executes: echo
+```
+
 ## Contributing
 
 1. Fork it
