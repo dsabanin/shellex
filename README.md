@@ -73,8 +73,7 @@ shellex("? ?& ?", "echo", [1,2,3,4], "abc")
 # executes: 'echo' '1' '2' '3' '4' 'abc'
 
 # ?& requires array to be present in the respective position
-shellex("? ?& ?", "echo", 1)
-# raises ShellArgumentMissing as it's missing the array for ?&
+shellex("? ?& ?", "echo", 1) # raises ShellArgumentMissing
 
 # ?~ escapes question mark
 shellex("? ?~", "echo", "ello")
