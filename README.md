@@ -1,6 +1,8 @@
 # Shellex
 
-TODO: Write a gem description
+Shellex allows you to run shell commands from your ruby scripts in a more robust and secure way than the built-in options.
+We had a security audit in http://beanstalkapp.com recently which showed many problems caused by shell injections. This code
+ is the result of our attempt to fix these issues once and for all.
 
 ## Installation
 
