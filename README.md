@@ -20,7 +20,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Grabbing STDOUT output:
+
+```ruby
+stdout, stderr = shellex("echo hello, world!")
+# stdout => "hello, world!\n"
+# stderr => ""
+```
+
+Grabbing STDERR output:
+
+```ruby
+stdout, stderr = shellex("echo error here 1>&2")
+# stdout => ""
+# stderr => "error here\n"
+```
+
+Convenience methods:
+
+```ruby
+shellex("echo hello, world").to_s # => "hello, world\n"
+shellex("echo hello, world").stdout # => "hello, world\n"
+shellex("echo error here 1>&2").stderr # => "error here\n"
+```
 
 ## Contributing
 
