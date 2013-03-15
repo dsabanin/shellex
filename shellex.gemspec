@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["sdmitry@gmail.com"]
   spec.description   = %q{Shell execution made easy and secure}
   spec.summary       = %q{Allows you to securely execute shell code with exceptions on errors and timeouts}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/dsabanin/shellex"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
