@@ -65,8 +65,9 @@ shellex("sleep 10", :timeout => 1) # raises ShellExecutionTimeout exception
 Interpolation of arguments:
 
 ```ruby
-shellex("echo ? ? ?", 1, "blah", [1,2,3])
-# executes: echo '1' 'blah' '123'
+# to_s gets called on all arguments
+shellex("echo ? ? ?", 1, "blah", :symbol)
+# executes: echo '1' 'blah' 'symbol'
 
 # ?& interpolates each array element separately
 shellex("? ?& ?", "echo", [1,2,3,4], "abc")

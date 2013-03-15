@@ -45,8 +45,8 @@ class ShellexTest < Test::Unit::TestCase
 
     context "interpolation" do
       should "interpolate and escape the args" do
-        real = "echo ? ? ?".with_args(1, "blah", [1,2,3])
-        assert_equal "echo '1' 'blah' '123'", real
+        real = "echo ? ? ?".with_args(1, "blah", :symbol)
+        assert_equal "echo '1' 'blah' 'symbol'", real
       end
 
       should "interpolate ?& as series of args" do
