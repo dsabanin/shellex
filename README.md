@@ -86,6 +86,10 @@ shellex("echo ?", nil)
 # ?? will skip the argument if it's nil
 shellex("echo ??", nil)
 # executes: echo
+
+# Shell injection protection
+shellex("echo ?", "'; rm -Rf /; '")
+# executes harmless: echo ''\''; rm -Rf /; '\'''
 ```
 
 ## Contributing
