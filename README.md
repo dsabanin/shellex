@@ -1,4 +1,4 @@
-# Shellex
+# Shellex [![Build Status](https://secure.travis-ci.org/dsabanin/shellex.png)](http://travis-ci.org/dsabanin/shellex)
 
 Shellex allows you to run shell commands from your ruby scripts in a more robust and secure way than the built-in options.
 We had a security audit in http://beanstalkapp.com recently which showed many problems caused by shell injections. This code
