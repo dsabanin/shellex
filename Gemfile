@@ -6,3 +6,6 @@ gemspec
 gem 'rake'
 gem 'popen4'
 
+group :test do
+  gem 'shoulda-context'
+end

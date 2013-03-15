@@ -1,5 +1,4 @@
 require "shellex/version"
-
 require 'popen4'
 
 class ShellExecutionError < StandardError; end
