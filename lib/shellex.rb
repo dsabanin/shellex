@@ -11,6 +11,7 @@ class ShellArgumentMissing < ShellExecutionError; end
 
 module Kernel
   SHELLEX_IO_BUFFER = 32*1024
+  DEFAULT_TIMEOUT = 5*60
 
   def _shellex_retvalue(ret)
     def ret.stdout; self[0] end
@@ -42,7 +43,7 @@ module Kernel
   end
 
   def silent_shellex(cmd, *args)
-    opts = {:timeout => 5*60, :close_stdin => true}
+    opts = {:timeout => DEFAULT_TIMEOUT, :close_stdin => true}
     if args.last.is_a?(Hash)
       opts = opts.merge(args.pop)
     end
@@ -92,8 +93,6 @@ module Kernel
   def _shellex_debug(cmd, err, opts, out)
     if defined?(Rails) and Rails.env.development?
       Rails.logger.info { "Executed: #{cmd}\n STDIN: #{opts[:input].inspect} STDOUT: #{out.inspect}\nSTDERR: #{err.inspect}" }
-      #elsif Rails.env.test?
-      #  STDERR.puts "Executed: #{cmd}\n STDIN: #{opts[:input].inspect} STDOUT: #{out.inspect}\nSTDERR: #{err.inspect}"
     end
   end
 end
