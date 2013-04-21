@@ -98,7 +98,12 @@ end
 
 class String
   def with_args(*args)
-    escape = proc { |val| val.to_s._shellex_escape }
+    escape = proc do |val| 
+      if val.empty? or val.strip == ""
+        return "''"
+      end
+      val.split(/'/, -1).map{|e| "'#{e}'"}.join("\\'")
+    end
     ignore_nil = proc { |val| escape.call(val) unless val.nil? }
 
     gsub(/(\?\&|\?\?|\?\!|\?~|\?)/) do |match|
@@ -125,12 +130,5 @@ class String
           end
       end
     end.strip
-  end
-
-  def _shellex_escape
-    if self.empty? or self.strip == ""
-      return "''"
-    end
-    self.split(/'/, -1).map{|e| "'#{e}'"}.join("\\'")
   end
 end
