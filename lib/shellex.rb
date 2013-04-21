@@ -133,12 +133,4 @@ class String
     end
     self.split(/'/, -1).map{|e| "'#{e}'"}.join("\\'")
   end
-
-  def shellex(*args)
-    shellex(self, *args)
-  end
-
-  def silent_shellex(*args)
-    silent_shellex(self, *args)
-  end
 end
