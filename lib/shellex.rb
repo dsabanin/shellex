@@ -101,9 +101,10 @@ class String
     escape = proc do |val|
       val = val.to_s
       if val.empty? or val.strip == ""
-        return "''"
+        "''"
+      else
+        val.split(/'/, -1).map{|e| "'#{e}'"}.join("\\'")
       end
-      val.split(/'/, -1).map{|e| "'#{e}'"}.join("\\'")
     end
     ignore_nil = proc { |val| escape.call(val) unless val.nil? }
 
