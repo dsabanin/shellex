@@ -98,7 +98,8 @@ end
 
 class String
   def with_args(*args)
-    escape = proc do |val| 
+    escape = proc do |val|
+      val = val.to_s
       if val.empty? or val.strip == ""
         return "''"
       end
