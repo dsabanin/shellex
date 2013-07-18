@@ -91,7 +91,11 @@ module Kernel
 
   def _shellex_debug(cmd, err, opts, out)
     if defined?(Rails) and Rails.env.development?
-      Rails.logger.info { "Executed: #{cmd}\n STDIN: #{opts[:input].inspect} STDOUT: #{out.inspect}\nSTDERR: #{err.inspect}" }
+      if $SHELLEX_VERBOSE
+        Rails.logger.info { "Executed: #{cmd}\n STDIN: #{opts[:input].inspect} STDOUT: #{out.inspect}\nSTDERR: #{err.inspect}" }
+      else
+        Rails.logger.info { "Executed: #{cmd}" }
+      end
     end
   end
 end
